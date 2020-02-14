@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+ @import 'pages/index.scss';
+ @import 'components/index.scss';
+
+ // External libraries
+@import "bootstrap/scss/bootstrap";
+
+ a.no-style {
+   text-decoration: inherit;
+   color: inherit;
+ }
+
+  a.no-style:visited {
+   text-decoration: inherit;
+   color: inherit;
+ }
+

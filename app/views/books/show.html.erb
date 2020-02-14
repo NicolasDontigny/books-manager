@@ -1,0 +1,5 @@
+<h1><%= @book.title %> - <%= @book.year_published %></h1>
+<h3><%= print_authors(@book) %>
+</h3>
+<p><%= @book.description %></p>
+<p><%= @book.fiction ? 'Fiction' : 'Non-Fiction' %></p>

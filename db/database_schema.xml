@@ -51,7 +51,7 @@
 <row name="description" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="date_published" null="1" autoincrement="0">
+<row name="year_published" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="online_reviews_id" null="1" autoincrement="0">
