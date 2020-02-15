@@ -64,7 +64,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'autoprefixer-rails'
-gem 'devise'
+gem "devise", ">= 4.7.1"
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'pundit'
 gem 'simple_form'
