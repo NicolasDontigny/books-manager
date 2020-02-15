@@ -6,8 +6,7 @@ class BooksController < ApplicationController
     @books = policy_scope(Book)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @book = Book.new
@@ -19,12 +18,24 @@ class BooksController < ApplicationController
     book = Book.new(book_params)
 
     author_ids = params[:book][:authors]
+    author_ids.each do |author_id|
+      author = Author.find(author_id)
+      book.authors.push(author) if author
+    end
 
-    book.authors.push(Author.find(author_ids))
+    category_ids = params[:book][:categories]
+    category_ids.each do |category_id|
+      category = Category.find(category_id)
+      book.categories.push(category) if category
+    end
 
-    book.save
+    authorize book
 
-    raise
+    if book.save
+      redirect_to book_path(book)
+    else
+      render :new
+    end
   end
 
   private
@@ -34,6 +45,12 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :subtitle, :description, :year_published, :fiction)
+    params.require(:book).permit(
+      :title,
+      :subtitle,
+      :description,
+      :year_published,
+      :fiction
+    )
   end
 end

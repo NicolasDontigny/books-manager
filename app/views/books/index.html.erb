@@ -4,12 +4,8 @@
     <div class="book-card">
       <%= link_to book_path(book), class: 'no-style' do %>
         <h3><%= book.title %> - <%= book.year_published %></h3>
-        <h5>By
-          <% book.authors.each do |author| %>
-            <%= author.first_name %> <%= author.last_name %>
-          <% end %>
-        </h5>
-        <p><%= book.description %></p>
+        <h4><%= book.subtitle %></h4>
+        <h5><%= print_authors(book) %></h5>
         <p><%= book.fiction ? 'Fiction' : 'Non-Fiction' %></p>
       <% end %>
     </div>

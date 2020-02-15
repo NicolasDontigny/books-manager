@@ -7,8 +7,11 @@ module ApplicationHelper
     book.authors.each_with_index do |author, index|
       authors += "#{author.first_name} #{author.last_name}"
 
-      authors += ' and ' if index == book.authors.length - 2
-      authors += ', ' if index != book.authors.length - 1
+      if index == book.authors.length - 2
+        authors += ' and '
+      elsif index != book.authors.length - 1
+        authors += ', '
+      end
     end
 
     authors
