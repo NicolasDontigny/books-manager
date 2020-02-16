@@ -4,4 +4,6 @@ class Book < ApplicationRecord
 
   has_many :authors, through: :book_authors
   has_many :categories, through: :book_categories
+
+  has_one_attached :cover_photo
 end

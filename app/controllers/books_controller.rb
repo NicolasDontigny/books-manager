@@ -15,24 +15,20 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.new(book_params)
+    @book = Book.new(book_params)
 
     author_ids = params[:book][:authors]
     author_ids.each do |author_id|
       author = Author.find(author_id)
-      book.authors.push(author) if author
+      @book.authors.push(author) if author
     end
 
-    category_ids = params[:book][:categories]
-    category_ids.each do |category_id|
-      category = Category.find(category_id)
-      book.categories.push(category) if category
-    end
+    assign_categories
 
-    authorize book
+    authorize @book
 
-    if book.save
-      redirect_to book_path(book)
+    if @book.save
+      redirect_to book_path(@book)
     else
       render :new
     end
@@ -50,7 +46,16 @@ class BooksController < ApplicationController
       :subtitle,
       :description,
       :year_published,
-      :fiction
+      :fiction,
+      :cover_photo
     )
+  end
+
+  def assign_categories
+    category_ids = params[:book][:categories]
+    category_ids.each do |category_id|
+      category = Category.find(category_id)
+      @book.categories.push(category) if category
+    end
   end
 end

@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "open-uri"
 
 puts "Deleting all models..."
 
@@ -108,6 +109,9 @@ BookCategory.create(
   category: biography
 )
 
+file = URI.open('https://res.cloudinary.com/da3vccwkh/image/upload/v1581796842/books/w0b8ld0aswpebuhwdwi0.jpg')
+book1.cover_photo.attach(io: file, filename: 'cant-hurt-me.jpg', content_type: 'image/jpg')
+
 book2 = Book.create(
   title: "Eat and Run: My Unlikely Journey to Ultramarathon Greatness",
   description: "For nearly two decades, Scott Jurek has been a dominant force—and darling—in the grueling and growing sport of ultrarunning. Until recently he held the American 24-hour record and he was one of the elite runners profiled in the runaway bestseller Born to Run.
@@ -137,6 +141,9 @@ BookCategory.create(
   category: running
 )
 
+file = URI.open('https://res.cloudinary.com/da3vccwkh/image/upload/v1581796842/books/zpmnub7qempip8rekjwz.jpg')
+book2.cover_photo.attach(io: file, filename: 'eat-and-run.jpg', content_type: 'image/jpg')
+
 book3 = Book.create(
   title: "The Promise of a Pencil: How an Ordinary Person Can Create Extraordinary Change",
   description: "The riveting story of how a young man turned $25 into more than 200 schools around the world and the guiding steps anyone can take to lead a successful and significant life.
@@ -165,6 +172,9 @@ BookCategory.create(
   book: book3,
   category: motivation
 )
+
+file = URI.open('https://res.cloudinary.com/da3vccwkh/image/upload/v1581796842/books/uammymtiixxay9impoj8.jpg')
+book3.cover_photo.attach(io: file, filename: 'promise-of-a-pencil.jpg', content_type: 'image/jpg')
 
 book4 = Book.create(
   title: "Becoming a Supple Leopard 2nd Edition: The Ultimate Guide to Resolving Pain, Preventing Injury, and Optimizing Athletic Performance",
@@ -197,5 +207,8 @@ BookCategory.create(
   book: book4,
   category: mobility
 )
+
+file = URI.open('https://res.cloudinary.com/da3vccwkh/image/upload/v1581796842/books/jhejauat8vb9euu1eigm.jpg')
+book4.cover_photo.attach(io: file, filename: 'becoming-a-supple-leopard.jpg', content_type: 'image/jpg')
 
 puts "Success!"
