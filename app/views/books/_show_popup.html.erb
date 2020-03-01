@@ -1,0 +1,33 @@
+<div class="modal fade" id="exampleModalCenter<%= book.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header flex-column">
+        <h4 class="modal-title mb-2" id="exampleModalLongTitle"><%= book.title %>: <%= book.subtitle %></h4>
+        <h5><%= print_authors(book) %>, <%= book.year_published %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% if book.online_review %>
+          <div class="amazon-ratings d-flex mb-3">
+            <%= image_tag 'amazon', width: 50, class: 'mr-3 pt-1' %>
+            <%= render 'shared/stars', rating: book.online_review.amazon_rating %>
+          </div>
+        <% end %>
+        <div class="book-description mb-3">
+          <%= book.description %>
+        </div>
+        <div class="book-tags d-flex">
+          <% book.categories.each do |category| %>
+            <span class="book-category"><%= category.name %></span>
+          <% end %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

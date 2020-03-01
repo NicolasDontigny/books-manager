@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_15_193031) do
+ActiveRecord::Schema.define(version: 2020_03_01_220556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_02_15_193031) do
     t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["first_name", "last_name"], name: "index_authors_on_first_name_and_last_name", unique: true
   end
 
   create_table "book_authors", force: :cascade do |t|
@@ -69,12 +70,23 @@ ActiveRecord::Schema.define(version: 2020_02_15_193031) do
     t.boolean "fiction", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "created_by_id"
+    t.index ["created_by_id"], name: "index_books_on_created_by_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "online_reviews", force: :cascade do |t|
+    t.decimal "amazon_rating"
+    t.integer "number_of_amazon_ratings"
+    t.bigint "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_online_reviews_on_book_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -85,6 +97,7 @@ ActiveRecord::Schema.define(version: 2020_02_15_193031) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -94,4 +107,6 @@ ActiveRecord::Schema.define(version: 2020_02_15_193031) do
   add_foreign_key "book_authors", "books"
   add_foreign_key "book_categories", "books"
   add_foreign_key "book_categories", "categories"
+  add_foreign_key "books", "users", column: "created_by_id"
+  add_foreign_key "online_reviews", "books"
 end

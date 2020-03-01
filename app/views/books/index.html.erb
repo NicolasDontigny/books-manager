@@ -2,7 +2,7 @@
 
 <% @books.each do |book| %>
     <div class="book-card">
-      <%= link_to book_path(book), class: 'no-style' do %>
+      <%#= link_to book_path(book), class: 'no-style' do %>
         <% if book.cover_photo.attached? %>
           <%= cl_image_tag book.cover_photo.key, width: 300, crop: :fill %>
         <% end %>
@@ -10,6 +10,15 @@
         <h4><%= book.subtitle %></h4>
         <h5><%= print_authors(book) %></h5>
         <p><%= book.fiction ? 'Fiction' : 'Non-Fiction' %></p>
-      <% end %>
+        <div class="d-flex">
+          <%= link_to 'Edit', edit_book_path(book), class: 'btn btn-warning' %>
+          <%= link_to 'Remove', book_path(book), method: :delete, data: { confirm: "Remove #{book.title}?"}, class: 'btn btn-danger' %>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter<%= book.id %>">
+          Launch demo modal
+        </button>
+        <%= render partial: 'show_popup', locals: { :book => book } %>
+      <%# end %>
     </div>
 <% end %>
+

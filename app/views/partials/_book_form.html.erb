@@ -1,28 +1,26 @@
-<!-- <form action="/books" method="post">
-  <input name="authenticity_token" value="<%#= form_authenticity_token %>" type="hidden">
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" name="book[title]">
-  </div>
-  <div class="form-group">
-    <label for="existing-authors">Authors</label>
-    <select multiple class="form-control" id="existing-authors" name="book[authors]">
-      <%# @authors.each do |author| %>
-        <option value="<%#= author.id %>"><%#= author.first_name %> <%#= author.last_name %></option>
-      <%# end %>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-  <input type="submit" class="btn btn-primary">
-</form> -->
-
 <%= simple_form_for @book do |f| %>
   <%= f.input :title %>
   <%= f.input :subtitle %>
   <%= f.input :year_published %>
+  <div class="form-group">
+    <label for="amazon-rating">Amazon Rating</label>
+    <select type="number" id="amazon-rating" name="online_reviews[amazon_rating]" class="form-control" value="<%= @book.online_review&.amazon_rating %>">
+      <option value="" disabled>Select a Rating</option>
+      <option value="1">1</option>
+      <option value="1.5">1.5</option>
+      <option value="2">2</option>
+      <option value="2.5">2.5</option>
+      <option value="3">3</option>
+      <option value="3.5">3.5</option>
+      <option value="4">4</option>
+      <option value="4.5">4.5</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="number-of-amazon-ratings">Number of Amazon Ratings</label>
+    <input type="number" id="number-of-amazon-ratings" name="online_reviews[number_of_amazon_ratings]" class="form-control" value="<%= @book.online_review&.number_of_amazon_ratings %>">
+  </div>
   <%= f.input :description %>
   <%= f.input :fiction %>
   <div class="form-group select book_authors">
@@ -32,6 +30,9 @@
       <% end %>
     </select>
   </div>
+  <div id="new-authors">
+  </div>
+  <div id="add-author" class="btn btn-success mb-3">Add new Author</div>
   <div class="form-group select book_categories">
     <select class="form-control select optional" multiple="multiple" name="book[categories][]" id="book_categories">
       <% @categories.each do |category| %>
@@ -39,6 +40,9 @@
       <% end %>
     </select>
   </div>
+  <div id="new-categories" class="form-row">
+  </div>
+  <div id="add-category" class="btn btn-success mb-3">Add new Category</div>
   <%= f.input :cover_photo, as: :file %>
   <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
