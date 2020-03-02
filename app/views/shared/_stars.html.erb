@@ -2,4 +2,7 @@
   <% rating.floor.times do %>
     <%= image_tag 'star-icon' %>
   <% end %>
+  <% if rating.floor != rating %>
+    <%= image_tag 'half-star-icon' %>
+  <% end %>
 </div>

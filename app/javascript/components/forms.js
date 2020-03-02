@@ -31,7 +31,7 @@ const addCategoryInput = (_) => {
 
   let inputHTML = `\
     <div class='col-md-3 mb-3'>\
-      <input type='text' class='form-control' name='book[new_category][][name]' placeholder='Name'></input>\
+      <input type='text' class='form-control' name='book[new_categories][][name]' placeholder='Name'></input>\
     </div>\
   `;
 

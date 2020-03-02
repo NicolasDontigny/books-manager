@@ -6,15 +6,13 @@
     <label for="amazon-rating">Amazon Rating</label>
     <select type="number" id="amazon-rating" name="online_reviews[amazon_rating]" class="form-control" value="<%= @book.online_review&.amazon_rating %>">
       <option value="" disabled>Select a Rating</option>
-      <option value="1">1</option>
-      <option value="1.5">1.5</option>
-      <option value="2">2</option>
-      <option value="2.5">2.5</option>
-      <option value="3">3</option>
-      <option value="3.5">3.5</option>
-      <option value="4">4</option>
-      <option value="4.5">4.5</option>
-      <option value="5">5</option>
+      <% [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5].each do |rating| %>
+        <% if @book.online_review&.amazon_rating == rating %>
+          <option value="<%= rating %>" selected="selected"><%= rating %></option>
+        <% else %>
+          <option value="<%= rating %>"><%= rating %></option>
+        <% end %>
+      <% end %>
     </select>
   </div>
   <div class="form-group">
@@ -26,7 +24,11 @@
   <div class="form-group select book_authors">
     <select class="form-control select optional" multiple="multiple" name="book[authors][]" id="book_authors">
       <% @authors.each do |author| %>
-        <option value="<%= author.id %>"><%= author.first_name %> <%= author.last_name %></option>
+        <% if @book.authors.include?(author) %>
+          <option value="<%= author.id %>" selected="selected"><%= author.first_name %> <%= author.last_name %></option>
+        <% else %>
+          <option value="<%= author.id %>"><%= author.first_name %> <%= author.last_name %></option>
+        <% end %>
       <% end %>
     </select>
   </div>
@@ -36,7 +38,11 @@
   <div class="form-group select book_categories">
     <select class="form-control select optional" multiple="multiple" name="book[categories][]" id="book_categories">
       <% @categories.each do |category| %>
-        <option value="<%= category.id %>"><%= category.name %></option>
+        <% if @book.categories.include?(category) %>
+          <option value="<%= category.id %>" selected="selected"><%= category.name %></option>
+        <% else %>
+          <option value="<%= category.id %>"><%= category.name %></option>
+        <% end %>
       <% end %>
     </select>
   </div>

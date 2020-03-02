@@ -120,7 +120,7 @@ class BooksController < ApplicationController
       created_category = Category.create(
         name: category[:name],
       )
-      @book.categories.push(created_author) if created_category
+      @book.categories.push(created_category) if created_category
     end
   end
 
