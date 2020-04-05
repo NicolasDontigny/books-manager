@@ -1,0 +1,24 @@
+<h1>Books in your Reading List</h1>
+
+<div class="reading-list-items-container">
+  <ul class="nav nav-tabs reading-lists-priorities">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Next</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Soon</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Interested</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Disabled</a>
+    </li>
+  </ul>
+  <% @reading_list_items.each do |item| %>
+    <div>
+      <p><%= item.book.title %></p>
+      <p><%= item.priority %></p>
+    </div>
+  <% end %>
+</div>

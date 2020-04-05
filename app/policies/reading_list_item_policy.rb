@@ -1,0 +1,21 @@
+class ReadingListItemPolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      scope.where(user: user).order(:priority)
+    end
+  end
+
+  def create?
+    true
+  end
+
+  def destroy?
+    user_owner?
+  end
+
+  private
+
+  def user_owner?
+    record.user == user
+  end
+end
