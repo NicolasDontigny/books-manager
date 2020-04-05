@@ -4,6 +4,10 @@ class ReadingListItemsController < ApplicationController
 
   def index
     @reading_list_items = policy_scope(ReadingListItem)
+
+    @items_next = @reading_list_items.where(priority: 'next')
+    @items_soon = @reading_list_items.where(priority: 'soon')
+    @items_interested = @reading_list_items.where(priority: 'interested')
   end
 
   def create

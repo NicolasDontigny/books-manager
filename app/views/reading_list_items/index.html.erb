@@ -1,32 +1,33 @@
 <h1>Books in your Reading List</h1>
 
 <div class="reading-list-items-container">
-  <ul class="nav nav-tabs reading-lists-priorities">
+  <ul class="nav nav-tabs" id="reading-list-tabs" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" href="#next">Next</a>
+      <a class="nav-link active" id="next-tab" data-toggle="tab" href="#next" role="tab" aria-controls="next" aria-selected="true">Next</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Soon</a>
+      <a class="nav-link" id="soon-tab" data-toggle="tab" href="#soon" role="tab" aria-controls="soon" aria-selected="false">Soon</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Interested</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Disabled</a>
+      <a class="nav-link" id="interested-tab" data-toggle="tab" href="#interested" role="tab" aria-controls="interested" aria-selected="false">Interested</a>
     </li>
   </ul>
 
-  <% @reading_list_items.each do |item| %>
-    <div>
-      <p><%= item.book.title %></p>
-      <p><%= item.priority %></p>
-      <div>hello</div>
-      <div>hello</div>
-      <div>hello</div>
-      <div>hello</div>
-      <div>hello</div>
+  <div class="tab-content pt-3" id="reading-list-books">
+    <div class="tab-pane fade show active" id="next" role="tabpanel" aria-labelledby="next-tab">
+      <% @items_next.each do |item| %>
+        <p><%= item.book.title %></p>
+      <% end %>
     </div>
-  <% end %>
+    <div class="tab-pane fade" id="soon" role="tabpanel" aria-labelledby="soon-tab">
+      <% @items_soon.each do |item| %>
+        <p><%= item.book.title %></p>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="interested" role="tabpanel" aria-labelledby="interested-tab">
+      <% @items_interested.each do |item| %>
+        <p><%= item.book.title %></p>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<div id="next">This is the next div</div>
