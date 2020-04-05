@@ -3,7 +3,7 @@
 <div class="reading-list-items-container">
   <ul class="nav nav-tabs reading-lists-priorities">
     <li class="nav-item">
-      <a class="nav-link active" href="#">Next</a>
+      <a class="nav-link active" href="#next">Next</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Soon</a>
@@ -15,10 +15,18 @@
       <a class="nav-link disabled" href="#">Disabled</a>
     </li>
   </ul>
+
   <% @reading_list_items.each do |item| %>
     <div>
       <p><%= item.book.title %></p>
       <p><%= item.priority %></p>
+      <div>hello</div>
+      <div>hello</div>
+      <div>hello</div>
+      <div>hello</div>
+      <div>hello</div>
     </div>
   <% end %>
 </div>
+
+<div id="next">This is the next div</div>
