@@ -15,15 +15,15 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
-//= require_tree .
+
 //= require multi-select
 
 import 'bootstrap';
 
 import { addNewAuthorToForm, addNewCategoryToForm } from '../components/forms'
+import { selectAllBookDetailsModals } from '../components/book_modal'
 
 addNewAuthorToForm();
 addNewCategoryToForm();
+
+selectAllBookDetailsModals();

@@ -3,16 +3,14 @@
   id="book-popup-<%= book.id %>"
   tabindex="-1"
   role="dialog"
-  aria-labelledby="book-popup-title<%= book.id %>"
+  aria-labelledby="book-popup-title-<%= book.id %>"
   aria-hidden="true"
-  data-backdrop="true"
-  data-keyboard="false"
 >
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <div class="d-flex flex-column">
-          <h4 class="mb-2" id="book-popup-title<%= book.id %>"><%= book.title %><% if book.subtitle %>:<% end %> <%= book.subtitle %></h4>
+          <h4 class="mb-2" id="book-popup-title-<%= book.id %>"><%= book.title %><% if book.subtitle %>:<% end %> <%= book.subtitle %></h4>
           <h5><%= print_authors(book) %>, <%= book.year_published %></h5>
         </div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
