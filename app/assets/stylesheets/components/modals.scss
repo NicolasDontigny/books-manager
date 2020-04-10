@@ -1,0 +1,31 @@
+.book-popup {
+  .book-category {
+    padding: 4px 8px;
+    background-color: #95d66b;
+    margin-right: 16px;
+    border-radius: 3px;
+  }
+
+  .number-of-reviews {
+    font-size: 20px
+  }
+
+  .book-description {
+    white-space: pre-wrap;
+  }
+
+  .modal-content {
+    cursor: default;
+    padding: 24px;
+  }
+
+  .modal-header, .modal-body, .modal-footer {
+    padding: 0;
+  }
+
+  @media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 60vw;
+    }
+  }
+}
