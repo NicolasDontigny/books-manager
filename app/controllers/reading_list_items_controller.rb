@@ -14,7 +14,7 @@ class ReadingListItemsController < ApplicationController
     @reading_list_item = ReadingListItem.new(
       book: @book,
       user: current_user,
-      priority: 1,
+      priority: params[:priority].to_i,
       read: false
     )
 

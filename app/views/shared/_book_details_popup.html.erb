@@ -23,7 +23,13 @@
           <% if book_in_reading_list(book) %>
             <%= link_to 'Remove from reading list', reading_list_item_path(book), method: :delete, class: 'btn btn-danger' %>
           <% else %>
-            <%= link_to 'Add to reading list', reading_list_item_path(book), method: :post, class: 'btn btn-primary' %>
+            <%= form_with url: reading_list_item_path(book), method: :post, local: true, class: 'form-inline' do %>
+              <div class="form-group">
+                <%= label_tag :priority, 'Priority' %>
+                <%= select_tag :priority, options_for_select([['Next', 0], ['Soon', 1], ['Interested', 2]]), class: 'form-control mx-sm-3' %>
+              </div>
+              <%= submit_tag 'Add to reading list', class: 'btn btn-primary' %>
+            <% end %>
           <% end %>
         </div>
 

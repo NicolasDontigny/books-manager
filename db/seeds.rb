@@ -15,6 +15,8 @@ Book.destroy_all
 
 puts "Creating authors..."
 
+nicolas = User.find_by(email: 'nicolas.dontigny1@gmail.com')
+
 goggins = Author.create(
   first_name: 'David',
   last_name: 'Goggins',
@@ -82,6 +84,7 @@ book1 = Book.create(
   description: "For David Goggins, childhood was a nightmare -- poverty, prejudice, and physical abuse colored his days and haunted his nights. But through self-discipline, mental toughness, and hard work, Goggins transformed himself from a depressed, overweight young man with no future into a U.S. Armed Forces icon and one of the world's top endurance athletes. The only man in history to complete elite training as a Navy SEAL, Army Ranger, and Air Force Tactical Air Controller, he went on to set records in numerous endurance events, inspiring Outside magazine to name him \"The Fittest (Real) Man in America.\"",
   year_published: 2018,
   fiction: false,
+  created_by: nicolas
 )
 
 BookAuthor.create(
@@ -119,6 +122,7 @@ book2 = Book.create(
 In Eat and Run, Jurek opens up about his life and career as a champion athlete with a plant-based diet and inspires runners at every level. From his Midwestern childhood hunting, fishing, and cooking for his meat-and-potatoes family to his slow transition to ultrarunning and veganism, Scott’s story shows the power of an iron will and blows apart the stereotypes of what athletes should eat to fuel optimal performance. Full of stories of competition as well as science and practical advice—including his own recipes—Eat and Run will motivate readers and expand their food horizons.",
   year_published: 2012,
   fiction: false,
+  created_by: nicolas
 )
 
 BookAuthor.create(
@@ -151,6 +155,7 @@ book3 = Book.create(
 Adam Braun began working summers at hedge funds when he was just sixteen years old, sprinting down the path to a successful Wall Street career. But while traveling he met a young boy begging on the streets of India, who after being asked what he wanted most in the world, simply answered, “A pencil.” This small request led to a staggering series of events that took Braun backpacking through dozens of countries before eventually leaving one of the world’s most prestigious jobs to found Pencils of Promise, the organization he started with just $25 that has since built more than 200 schools around the world.",
   year_published: 2014,
   fiction: false,
+  created_by: nicolas
 )
 
 BookAuthor.create(
@@ -181,6 +186,7 @@ book4 = Book.create(
   description: "Improve your athletic performance, extend your athletic career, treat stiffness and achy joints, and prevent and rehabilitate injuries—all without having to seek out a coach, doctor, chiropractor, physical therapist, or masseur. In Becoming a Supple Leopard, Dr. Kelly Starrett—founder of MobilityWOD.com—shares his revolutionary approach to mobility and maintenance of the human body and teaches you how to hack your own movement, allowing you to live a healthier, more fulfilling life. This new edition of the New York Times and Wall Street Journal bestseller has been thoroughly revised to make it even easier to put to use.",
   year_published: 2018,
   fiction: false,
+  created_by: nicolas
 )
 
 BookAuthor.create(
