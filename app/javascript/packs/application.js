@@ -20,10 +20,7 @@
 
 import 'bootstrap';
 
-import { addNewAuthorToForm, addNewCategoryToForm } from '../components/forms'
-import { selectAllBookDetailsModals } from '../components/book_modal'
+import { addNewAuthorToForm, addNewCategoryToForm } from '../components/forms';
 
 addNewAuthorToForm();
 addNewCategoryToForm();
-
-selectAllBookDetailsModals();
