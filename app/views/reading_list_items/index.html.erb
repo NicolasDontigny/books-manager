@@ -15,19 +15,25 @@
 
   <div class="tab-content pt-3" id="reading-list-books">
     <div class="tab-pane fade show active" id="next" role="tabpanel" aria-labelledby="next-tab">
-      <% @items_next.each do |item| %>
-        <p><%= item.book.title %></p>
-      <% end %>
+      <div class="books-grid-container">
+        <% @items_next.each do |item| %>
+          <%= render partial: 'shared/book_card', locals: { :book => item.book } %>
+        <% end %>
+      </div>
     </div>
     <div class="tab-pane fade" id="soon" role="tabpanel" aria-labelledby="soon-tab">
-      <% @items_soon.each do |item| %>
-        <p><%= item.book.title %></p>
-      <% end %>
+      <div class="books-grid-container">
+        <% @items_soon.each do |item| %>
+          <%= render partial: 'shared/book_card', locals: { :book => item.book } %>
+        <% end %>
+      </div>
     </div>
     <div class="tab-pane fade" id="interested" role="tabpanel" aria-labelledby="interested-tab">
-      <% @items_interested.each do |item| %>
-        <p><%= item.book.title %></p>
-      <% end %>
+      <div class="books-grid-container">
+        <% @items_interested.each do |item| %>
+          <%= render partial: 'shared/book_card', locals: { :book => item.book } %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
