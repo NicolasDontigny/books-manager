@@ -1,0 +1,9 @@
+<div class="book-card" data-toggle="modal" data-target="#book-popup-<%= book.id %>">
+    <% if book.cover_photo.attached? %>
+      <%= cl_image_tag book.cover_photo.key, width: 300, crop: :fill, class: 'mb-3' %>
+    <% end %>
+
+    <%= render 'shared/reviews', book: book %>
+
+    <%= render partial: 'shared/book_details_popup', locals: { :book => book } %>
+</div>

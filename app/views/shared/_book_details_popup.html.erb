@@ -1,0 +1,50 @@
+<div
+  class="modal fade"
+  id="book-popup-<%= book.id %>"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="book-popup-title<%= book.id %>"
+  aria-hidden="true"
+  data-backdrop="true"
+  data-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="d-flex flex-column">
+          <h4 class="mb-2" id="book-popup-title<%= book.id %>"><%= book.title %><% if book.subtitle %>:<% end %> <%= book.subtitle %></h4>
+          <h5><%= print_authors(book) %>, <%= book.year_published %></h5>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="my-3"><%= book.fiction ? 'Fiction' : 'Non-Fiction' %></p>
+          <% if book_in_reading_list(book) %>
+            <%= link_to 'Remove from reading list', reading_list_item_path(book), method: :delete, class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to 'Add to reading list', reading_list_item_path(book), method: :post, class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+
+        <%= render 'shared/reviews', book: book %>
+
+        <div class="book-tags d-flex">
+          <% book.categories.each do |category| %>
+            <span class="book-category"><%= category.name %></span>
+          <% end %>
+        </div>
+        <div class="book-description mb-3">
+          <%= book.description %>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <%= link_to 'Edit', edit_book_path(book), class: 'btn btn-warning mr-2' %>
+        <%= link_to 'Remove', book_path(book), method: :delete, data: { confirm: "Remove #{book.title}?"}, class: 'btn btn-danger mr-2' %>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
