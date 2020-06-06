@@ -13,6 +13,10 @@ class BookPolicy < ApplicationPolicy
     true
   end
 
+  def create_from_website?
+    true
+  end
+
   def update?
     user_owner?
   end

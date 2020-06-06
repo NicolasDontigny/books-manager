@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_05_190740) do
+ActiveRecord::Schema.define(version: 2020_06_06_210213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2020_04_05_190740) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "created_by_id"
+    t.string "cover_url"
     t.index ["created_by_id"], name: "index_books_on_created_by_id"
   end
 
@@ -86,6 +87,8 @@ ActiveRecord::Schema.define(version: 2020_04_05_190740) do
     t.bigint "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "goodread_rating"
+    t.integer "number_of_goodread_ratings"
     t.index ["book_id"], name: "index_online_reviews_on_book_id"
   end
 

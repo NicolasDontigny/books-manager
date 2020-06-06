@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'books/new' => 'books#new', as: :new_book
   get 'books/:id' => 'books#show', as: :book
   post 'books' => 'books#create'
+  post 'books/website' =>
+    'books#create_from_website', as: :create_book_from_website
   get 'books/:id/edit' => 'books#edit', as: :edit_book
   patch 'books/:id' => 'books#update'
   delete 'books/:id' => 'books#destroy'

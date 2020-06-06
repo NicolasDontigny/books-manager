@@ -1,3 +1,6 @@
+require_relative '../services/amazon_parser'
+require_relative '../services/goodreads_parser'
+
 # frozen_string_literal: true
 
 # Top-level comment
@@ -32,6 +35,27 @@ class BooksController < ApplicationController
 
     if @book.save
       redirect_to book_path(@book)
+    else
+      render :new
+    end
+  end
+
+  def create_from_website
+    website = params[:website]
+    @url = params[:url]
+
+    if website == 'goodreads'
+      @book = GoodreadsParser.new(@url).execute
+    elsif website == 'amazon'
+      @book = AmazonParser.new(@url).execute
+    end
+
+    @book.created_by = current_user
+
+    authorize @book
+
+    if @book.save
+      redirect_to books_path
     else
       render :new
     end

@@ -1,7 +1,16 @@
 <% if book.online_review %>
-  <div class="amazon-ratings d-flex mb-3">
-    <%= image_tag 'amazon', width: 50, class: 'mr-3 pt-1' %>
-    <span class="mr-2"><%= render 'shared/stars', rating: book.online_review.amazon_rating %></span>
-    <span class="number-of-reviews">(<%= book.online_review.number_of_amazon_ratings %>)</span>
-  </div>
+  <% if book.online_review.amazon_rating %>
+    <div class="amazon-ratings d-flex mb-3">
+      <%= image_tag 'amazon', width: 50, class: 'mr-3 pt-1' %>
+      <span class="mr-2"><%= render 'shared/stars', rating: book.online_review.amazon_rating %></span>
+      <span class="number-of-reviews">(<%= book.online_review.number_of_amazon_ratings %>)</span>
+    </div>
+  <% end %>
+  <% if book.online_review.goodread_rating %>
+    <div class="amazon-ratings d-flex mb-3">
+      <%= image_tag 'goodreads', width: 50, class: 'mr-3 pt-1' %>
+      <span class="mr-2"><%= render 'shared/stars', rating: book.online_review.goodread_rating %></span>
+      <span class="number-of-reviews">(<%= book.online_review.number_of_goodread_ratings %>)</span>
+    </div>
+  <% end %>
 <% end %>

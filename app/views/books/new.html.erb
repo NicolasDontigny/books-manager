@@ -1,3 +1,29 @@
 <h1>Add a New Book:</h1>
 
-<%= render 'partials/book_form' %>
+<hr>
+
+<div class="form-container">
+  <h2>From a Website:</h2>
+
+  <%# <form action="/books/website" method="post"> %>
+  <%= form_with url: create_book_from_website_path, local: true do |f| %>
+    <div class="form-group">
+      <%= label_tag :website, "Website:" %>
+      <%= select_tag :website, options_for_select([['Goodreads', 'goodreads'],['Amazon', 'amazon']]), class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :url, "Url:" %>
+      <%= text_field_tag :url, nil, placeholder: 'https://www.amazon.ca/...', class: 'form-control' %>
+    </div>
+    <%= submit_tag 'Add book', class: 'btn btn-primary' %>
+  <% end %>
+  <%# </form> %>
+</div>
+
+<hr>
+
+<div class="form-container">
+  <h2>Or Manually:</h2>
+
+  <%= render 'partials/book_form' %>
+</div>
