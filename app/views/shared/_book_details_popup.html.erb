@@ -33,6 +33,14 @@
           <% end %>
         </div>
 
+        <div class="d-flex justify-content-end">
+          <% if book_in_reading_list(book) && book_is_read(book) %>
+            <%= link_to 'Mark as Unread', mark_as_unread_path(book), method: :post %>
+          <% else %>
+            <%= link_to 'Mark as Read', mark_as_read_path(book), method: :post %>
+          <% end %>
+        </div>
+
         <%= render 'shared/reviews', book: book %>
 
         <div class="book-tags d-flex">

@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   delete 'books/:id' => 'books#destroy'
 
   get 'reading-list' => 'reading_list_items#index', as: :reading_list
-  post 'reading-list/book/:book_id' => 'reading_list_items#create', as: :reading_list_item
+  get 'reading-list/read' => 'reading_list_items#read_books', as: :read_books
+  post 'reading-list/book/:book_id' =>
+    'reading_list_items#create', as: :reading_list_item
+  post 'reading-list/book/:book_id/mark-as-read' =>
+    'reading_list_items#mark_as_read', as: :mark_as_read
+  post 'reading-list/book/:book_id/mark-as-unread' =>
+    'reading_list_items#mark_as_unread', as: :mark_as_unread
   delete 'reading-list/book/:book_id' => 'reading_list_items#destroy'
 end

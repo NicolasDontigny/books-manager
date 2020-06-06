@@ -5,11 +5,23 @@ class ReadingListItemPolicy < ApplicationPolicy
     end
   end
 
+  def read_books?
+    true
+  end
+
   def create?
     true
   end
 
   def destroy?
+    user_owner?
+  end
+
+  def mark_as_read?
+    user_owner?
+  end
+
+  def mark_as_unread?
     user_owner?
   end
 

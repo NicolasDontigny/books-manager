@@ -1,13 +1,19 @@
 class ReadingListItemsController < ApplicationController
-  before_action :set_book, only: %i[create ]
-  before_action :set_reading_list_item, only: %i[destroy]
+  before_action :set_book, only: %i[create]
+  before_action :set_reading_list_item, only: %i[destroy mark_as_read mark_as_unread]
 
   def index
-    @reading_list_items = policy_scope(ReadingListItem)
+    @reading_list_items = policy_scope(ReadingListItem).where(read: false)
 
     @items_next = @reading_list_items.where(priority: 'next')
     @items_soon = @reading_list_items.where(priority: 'soon')
     @items_interested = @reading_list_items.where(priority: 'interested')
+  end
+
+  def read_books
+    @read_books = policy_scope(ReadingListItem).where(read: true)
+
+    authorize @read_books
   end
 
   def create
@@ -31,6 +37,35 @@ class ReadingListItemsController < ApplicationController
 
       @reading_list_item.destroy
     end
+
+    redirect_to books_path
+  end
+
+  def mark_as_read
+    if @reading_list_item.nil?
+      @reading_list_item = ReadingListItem.new(
+        book: @book,
+        user: current_user,
+        read: true
+      )
+    else
+      @reading_list_item.read = true
+    end
+
+    authorize @reading_list_item
+
+    @reading_list_item.save
+
+    redirect_to books_path
+  end
+
+  def mark_as_unread
+    redirect_to books_path if @reading_list_item.nil?
+
+    authorize @reading_list_item
+
+    @reading_list_item.read = false
+    @reading_list_item.save
 
     redirect_to books_path
   end

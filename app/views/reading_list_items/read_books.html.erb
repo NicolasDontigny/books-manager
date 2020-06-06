@@ -1,0 +1,8 @@
+<h1>Books I've Read</h1>
+
+<div class="books-grid-container">
+  <% @read_books.each do |book| %>
+    <%= render partial: 'shared/book_card', locals: { :book => book.book } %>
+  <% end %>
+</div>
+
