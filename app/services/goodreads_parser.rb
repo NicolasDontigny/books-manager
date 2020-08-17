@@ -15,15 +15,18 @@ class GoodreadsParser
     @publishing_date = nil
     html_doc.search('#details .row').each do |element|
       if element.text.strip.match?('Published')
-        # year_pattern = /Published(\\n)?\s*[a-zA-Z]+\s\d{1,2}[a-zA-Z]{1,2}\s(?<year>\d{4}(\\n)?\s*by)/
-        match_data = element.text.strip.match(/Published(\\n)?\s*[a-zA-Z]+\s\d{1,2}[a-zA-Z]{1,2}\s(?<year>\d{4}(\\n)?\s*by)/)
+        year_pattern = /Published(\\n)?\s*[a-zA-Z]+\s\d{1,2}[a-zA-Z]{1,2}\s(?<year>\d{4}(\\n)?\s*by)/
+        match_data = element.text.strip.match(year_pattern)
         @publishing_date = match_data.nil? ? nil : match_data[:year].to_i
       end
     end
 
     rating_element = html_doc.at('#bookMeta [itemprop="ratingValue"]')
-    rating_float = rating_element.text.strip.to_f
-    @rating = (rating_float * 2).round / 2.0
+    @rating = rating_element.text.strip.to_f
+
+    puts "====================="
+    puts "rating: #{@rating.inspect}"
+    puts "====================="
 
     number_of_reviews_element = html_doc.at('#bookMeta [itemprop="ratingCount"]')
     @number_of_reviews = number_of_reviews_element.attribute("content").value.to_i

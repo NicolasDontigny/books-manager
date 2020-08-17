@@ -1,8 +1,13 @@
 <div class="stars-rating">
-  <% rating.floor.times do %>
-    <%= image_tag 'star-icon' %>
+  <% @rounded_rating = (rating * 2).round / 2.0 %>
+  <% @rounded_rating.floor.times do %>
+    <i class="fas fa-star star-icon"></i>
   <% end %>
-  <% if rating.floor != rating %>
-    <%= image_tag 'half-star-icon' %>
+  <% if @rounded_rating.floor != @rounded_rating %>
+    <i class="fas fa-star-half-alt star-icon"></i>
+  <% end %>
+  <% (5 - @rounded_rating.ceil).times do %>
+    <%#= image_tag 'star-empty', class: 'star' %>
+    <i class="far fa-star star-icon"></i>
   <% end %>
 </div>

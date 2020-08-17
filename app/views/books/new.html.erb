@@ -5,19 +5,32 @@
 <div class="form-container">
   <h2>From a Website:</h2>
 
-  <%# <form action="/books/website" method="post"> %>
-  <%= form_with url: create_book_from_website_path, local: true do |f| %>
+  <%= form_with url: create_book_from_website_path, class: 'simple_form', local: true do |f| %>
     <div class="form-group">
       <%= label_tag :website, "Website:" %>
       <%= select_tag :website, options_for_select([['Goodreads', 'goodreads'],['Amazon', 'amazon']]), class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= label_tag :url, "Url:" %>
-      <%= text_field_tag :url, nil, placeholder: 'https://www.amazon.ca/...', class: 'form-control' %>
+      <%= text_field_tag :url, nil, placeholder: 'https://www.website.ca/...', class: 'form-control' %>
     </div>
+    <div class="form-group select book_categories">
+      <select class="form-control select optional" multiple="multiple" name="book[categories][]" id="book_categories">
+        <% @categories.each do |category| %>
+          <% if @book.categories.include?(category) %>
+            <option value="<%= category.id %>" selected="selected"><%= category.name %></option>
+          <% else %>
+            <option value="<%= category.id %>"><%= category.name %></option>
+          <% end %>
+        <% end %>
+      </select>
+    </div>
+    <div id="new-categories" class="form-row">
+    </div>
+    <div id="add-category" class="btn btn-success mb-3">Add new Category</div>
+    <br>
     <%= submit_tag 'Add book', class: 'btn btn-primary' %>
   <% end %>
-  <%# </form> %>
 </div>
 
 <hr>

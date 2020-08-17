@@ -1,8 +1,9 @@
 .stars-rating {
   display: flex;
 
-  img {
-    width: 30px;
+  .star-icon {
+    color: orange;
+    width: 20px;
     margin: 0 4px;
   }
 }

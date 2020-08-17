@@ -52,6 +52,9 @@ class BooksController < ApplicationController
 
     @book.created_by = current_user
 
+    assign_categories
+    assign_new_categories
+
     authorize @book
 
     if @book.save
