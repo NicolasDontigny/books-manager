@@ -15,4 +15,6 @@ class Book < ApplicationRecord
   has_one_attached :cover_photo
 
   accepts_nested_attributes_for :authors
+
+  validates :title, presence: true
 end

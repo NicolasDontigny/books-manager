@@ -13,6 +13,10 @@ class ReadingListItemPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    user_owner?
+  end
+
   def destroy?
     user_owner?
   end

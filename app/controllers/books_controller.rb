@@ -1,3 +1,4 @@
+# require 'pry-byebug'
 require_relative '../services/amazon_parser'
 require_relative '../services/goodreads_parser'
 
@@ -60,6 +61,8 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to books_path
     else
+      @authors = Author.all
+      @categories = Category.all
       render :new
     end
   end

@@ -31,6 +31,18 @@ class ReadingListItemsController < ApplicationController
     redirect_to books_path
   end
 
+  def update
+    @book = Book.find(params[:book_id])
+    @reading_list_item = ReadingListItem
+                         .where(user: current_user)
+                         .find_by(book: @book)
+
+    @reading_list_item.priority = params[:priority].to_i
+    authorize @reading_list_item
+
+    @reading_list_item.save
+  end
+
   def destroy
     if @reading_list_item
       authorize @reading_list_item

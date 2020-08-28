@@ -21,6 +21,15 @@
         <div class="d-flex justify-content-between align-items-center">
           <p class="my-3"><%= book.fiction ? 'Fiction' : 'Non-Fiction' %></p>
           <% if book_in_reading_list(book) %>
+            <div>
+              <%= form_with url: reading_list_item_path(book), method: :patch, remote: true, class: 'form-inline' do %>
+                <div class="form-group">
+                  <%= label_tag :priority, 'Priority' %>
+                  <%= select_tag :priority, options_for_select([['Next', 0], ['Soon', 1], ['Interested', 2]], get_reading_list_priority(book)), class: 'form-control mx-sm-3' %>
+                </div>
+                <%= submit_tag 'Change priority', class: 'btn btn-primary' %>
+              <% end %>
+            </div>
             <%= link_to 'Remove from reading list', reading_list_item_path(book), method: :delete, class: 'btn btn-danger' %>
           <% else %>
             <%= form_with url: reading_list_item_path(book), method: :post, local: true, class: 'form-inline' do %>

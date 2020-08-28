@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'reading-list/read' => 'reading_list_items#read_books', as: :read_books
   post 'reading-list/book/:book_id' =>
     'reading_list_items#create', as: :reading_list_item
+  patch 'reading-list/book/:book_id' =>
+    'reading_list_items#update'
   post 'reading-list/book/:book_id/mark-as-read' =>
     'reading_list_items#mark_as_read', as: :mark_as_read
   post 'reading-list/book/:book_id/mark-as-unread' =>
